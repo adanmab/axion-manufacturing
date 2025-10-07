@@ -1,0 +1,73 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/axion_manufacturing/app/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model QuoteRequest {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Contact information
+  companyName String?
+  contactName String
+  email       String
+  phone       String?
+  
+  // Project details
+  projectName String?
+  description String
+  service     String   // CNC, laser cutting, 3D printing, sheet metal
+  material    String?
+  quantity    Int
+  timeline    String
+  
+  // Additional requirements
+  requirements String?
+  
+  // Status
+  status      String   @default("pending") // pending, quoted, rejected, completed
+  
+  // File uploads
+  files       FileUpload[]
+  
+  @@map("quote_requests")
+}
+
+model FileUpload {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  
+  fileName      String
+  originalName  String
+  filePath      String
+  fileSize      Int
+  mimeType      String
+  
+  // Relationship
+  quoteRequestId String
+  quoteRequest   QuoteRequest @relation(fields: [quoteRequestId], references: [id], onDelete: Cascade)
+  
+  @@map("file_uploads")
+}
+
+model ContactForm {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  
+  name        String
+  email       String
+  company     String?
+  subject     String
+  message     String
+  
+  status      String   @default("unread") // unread, read, responded
+  
+  @@map("contact_forms")
+}

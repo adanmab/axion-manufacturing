@@ -1,0 +1,98 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/app/_not-found/page-0f2920590e016601.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/css/8a320a119f10ccef.css",
+      "static/chunks/585-58af2c3535ca24e5.js",
+      "static/chunks/app/layout-256ca7f698feedb0.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/about/page-54516b4a10639d5d.js"
+    ],
+    "/contact/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/633-91b69d8407631c05.js",
+      "static/chunks/585-58af2c3535ca24e5.js",
+      "static/chunks/app/contact/page-285e73a538f92ce9.js"
+    ],
+    "/quote/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/633-91b69d8407631c05.js",
+      "static/chunks/585-58af2c3535ca24e5.js",
+      "static/chunks/952-e34d262ce0bbf45c.js",
+      "static/chunks/app/quote/page-24e267a26d39ee09.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/633-91b69d8407631c05.js",
+      "static/chunks/app/page-a9ca99b87e4c3543.js"
+    ],
+    "/services/3d-printing/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/services/3d-printing/page-7c78134c73ea9e79.js"
+    ],
+    "/services/cnc-machining/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/services/cnc-machining/page-0bd6a5bdc902031e.js"
+    ],
+    "/services/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/services/page-f3535a1e521642d4.js"
+    ],
+    "/services/laser-cutting/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/services/laser-cutting/page-ce9736fdc51eca2c.js"
+    ],
+    "/services/sheet-metal/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/913-f84b69497a4088b0.js",
+      "static/chunks/app/services/sheet-metal/page-5a9b82b53fa5032e.js"
+    ]
+  }
+}

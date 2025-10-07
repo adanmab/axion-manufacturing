@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/api/auth/providers/route": "app/api/auth/providers/route.js",
+  "/api/files/[...filename]/route": "app/api/files/[...filename]/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/quote/page": "app/quote/page.js",
+  "/page": "app/page.js",
+  "/services/3d-printing/page": "app/services/3d-printing/page.js",
+  "/services/cnc-machining/page": "app/services/cnc-machining/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/services/page": "app/services/page.js",
+  "/api/quote-request/route": "app/api/quote-request/route.js",
+  "/services/laser-cutting/page": "app/services/laser-cutting/page.js",
+  "/services/sheet-metal/page": "app/services/sheet-metal/page.js"
+}
