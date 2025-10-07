@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
 import { Resend } from 'resend'
+import { prisma } from '@/lib/db'
 
 export const dynamic = "force-dynamic"
 
@@ -32,18 +33,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
-      )
-    }
-
-    // Dynamic import of prisma to avoid build-time errors
-    const { prisma } = await import('@/lib/db')
-
-    // Check if database is available
-    if (!prisma) {
-      console.error('Database not configured')
-      return NextResponse.json(
-        { error: 'Service temporarily unavailable' },
-        { status: 503 }
       )
     }
 

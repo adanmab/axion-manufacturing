@@ -1,6 +1,4 @@
 
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   distDir: process.env.NEXT_DIST_DIR || '.next',
@@ -19,6 +17,15 @@ const nextConfig = {
       'bigrep.com',
       'i.ytimg.com'
     ]
+  },
+  // Ensure Prisma client is included in serverless functions
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push({
+        '@prisma/client': 'commonjs @prisma/client',
+      })
+    }
+    return config
   },
 };
 

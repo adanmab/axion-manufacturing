@@ -4,14 +4,11 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
-// Only initialize Prisma if we have a DATABASE_URL
-// This prevents errors during build time
-export const prisma = globalForPrisma.prisma ?? (
-  process.env.DATABASE_URL 
-    ? new PrismaClient() 
-    : null as any
-)
+// Initialize Prisma Client
+export const prisma = globalForPrisma.prisma ?? new PrismaClient({
+  log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+})
 
-if (process.env.NODE_ENV !== 'production' && process.env.DATABASE_URL) {
+if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = prisma
 }
