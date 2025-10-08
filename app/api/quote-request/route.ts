@@ -1,15 +1,17 @@
-
 import { NextRequest, NextResponse } from 'next/server'
 import { writeFile, mkdir } from 'fs/promises'
 import path from 'path'
 import { Resend } from 'resend'
-import { prisma } from '@/lib/db'
 
 export const dynamic = "force-dynamic"
-
-// Increase body size limit to 50MB for large CAD files
 export const runtime = 'nodejs'
-export const maxDuration = 60 // 60 seconds timeout
+export const maxDuration = 60
+
+// Lazy import prisma to avoid build-time initialization issues
+async function getPrismaClient() {
+  const { prisma } = await import('@/lib/db')
+  return prisma
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,6 +37,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    // Get Prisma client
+    const prisma = await getPrismaClient()
 
     // Create quote request in database
     const quoteRequest = await prisma.quoteRequest.create({
