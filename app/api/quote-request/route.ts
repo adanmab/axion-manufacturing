@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import path from 'path'
 import { Resend } from 'resend'
 
 export const dynamic = "force-dynamic"
 export const runtime = 'nodejs'
 export const maxDuration = 60
-
-// Lazy import prisma to avoid build-time initialization issues
-async function getPrismaClient() {
-  const { prisma } = await import('@/lib/db')
-  return prisma
-}
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,48 +30,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get Prisma client
-    const prisma = await getPrismaClient()
-
-    // Create quote request in database
-    const quoteRequest = await prisma.quoteRequest.create({
-      data: {
-        companyName,
-        contactName,
-        email,
-        phone,
-        projectName,
-        description,
-        service,
-        material,
-        quantity,
-        timeline,
-        requirements,
-        status: 'pending'
-      }
+    // Generate unique quote ID for tracking
+    const quoteId = `QT-${Date.now()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
+    
+    console.log(`📋 Processing quote request ${quoteId}:`, {
+      contactName,
+      email,
+      service,
+      quantity,
+      timeline
     })
 
     // Handle file uploads and prepare attachments for email
     const uploadedFiles: Array<{
       fileName: string
-      originalName: string
-      filePath: string
       fileSize: number
-      mimeType: string
     }> = []
 
     const emailAttachments: Array<{
       filename: string
       content: string
     }> = []
-
-    // Ensure uploads directory exists
-    const uploadsDir = path.join(process.cwd(), 'uploads')
-    try {
-      await mkdir(uploadsDir, { recursive: true })
-    } catch (error) {
-      // Directory might already exist
-    }
 
     // Process uploaded files
     const entries = Array.from(formData.entries())
@@ -91,27 +62,14 @@ export async function POST(request: NextRequest) {
         console.log(`📎 Processing file: ${file.name}, size: ${file.size} bytes, type: ${file.type}`)
         
         if (file.size > 0) {
-          // Convert file to buffer
+          // Convert file to buffer for email attachment
           const bytes = await file.arrayBuffer()
           const buffer = Buffer.from(bytes)
           
-          // Generate unique filename
-          const timestamp = Date.now()
-          const randomId = Math.random().toString(36).substr(2, 9)
-          const fileExtension = path.extname(file.name)
-          const fileName = `${timestamp}_${randomId}${fileExtension}`
-          const filePath = path.join(uploadsDir, fileName)
-          
-          // Save to disk
-          await writeFile(filePath, buffer)
-          
-          // Store file info
+          // Store file info for tracking
           uploadedFiles.push({
-            fileName,
-            originalName: file.name,
-            filePath: `uploads/${fileName}`,
-            fileSize: file.size,
-            mimeType: file.type || 'application/octet-stream'
+            fileName: file.name,
+            fileSize: file.size
           })
 
           // Prepare attachment for email (Resend requires base64)
@@ -127,16 +85,6 @@ export async function POST(request: NextRequest) {
     }
     
     console.log(`📧 Total attachments to send via email: ${emailAttachments.length}`)
-
-    // Save file records to database
-    if (uploadedFiles.length > 0) {
-      await prisma.fileUpload.createMany({
-        data: uploadedFiles.map(fileInfo => ({
-          ...fileInfo,
-          quoteRequestId: quoteRequest.id
-        }))
-      })
-    }
 
     // Format email content
     const emailHtml = `
@@ -160,7 +108,7 @@ export async function POST(request: NextRequest) {
           <div class="container">
             <div class="header">
               <h1>📋 Nueva Solicitud de Cotización</h1>
-              <p style="margin: 5px 0 0 0; opacity: 0.9;">ID: #${quoteRequest.id}</p>
+              <p style="margin: 5px 0 0 0; opacity: 0.9;">ID: #${quoteId}</p>
             </div>
             
             <div class="content">
@@ -202,7 +150,7 @@ export async function POST(request: NextRequest) {
                 <div class="value">
                   ${uploadedFiles.map(file => `
                     <div style="padding: 10px; background: #f3f4f6; border-radius: 6px; margin-bottom: 8px;">
-                      📎 ${file.originalName} (${(file.fileSize / 1024).toFixed(2)} KB)
+                      📎 ${file.fileName} (${(file.fileSize / 1024).toFixed(2)} KB)
                     </div>
                   `).join('')}
                 </div>
@@ -251,7 +199,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      quoteRequestId: quoteRequest.id,
+      quoteRequestId: quoteId,
       filesUploaded: uploadedFiles.length
     })
 
