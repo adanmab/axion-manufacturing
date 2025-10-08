@@ -97,6 +97,24 @@ export function QuoteRequestForm({ uploadedFiles = [] }: QuoteRequestFormProps) 
 
       const result = await response.json()
       
+      // 🎯 GOOGLE ADS CONVERSION TRACKING
+      // Este código se ejecuta cuando alguien envía una cotización exitosamente
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-874962281/vQU6CNbIkakbEOm6m6ED',
+          'value': 500.0,
+          'currency': 'MXN',
+          'transaction_id': result.quoteId || Math.random().toString(36).substr(2, 9)
+        });
+        
+        // También registrar como evento para Google Analytics
+        (window as any).gtag('event', 'generate_lead', {
+          'event_category': 'engagement',
+          'event_label': 'quote_form_submission',
+          'value': 500
+        });
+      }
+      
       setIsSubmitted(true)
       toast.success('Quote request submitted successfully!')
       
