@@ -8,11 +8,6 @@ import { Button } from '@/components/ui/button'
 
 const contactInfo = [
   {
-    title: 'Address',
-    icon: MapPin,
-    details: ['Chihuahua 31114', 'Mexico']
-  },
-  {
     title: 'Email',
     icon: Mail,
     details: ['quote@axionmfg.net']
@@ -21,6 +16,11 @@ const contactInfo = [
     title: 'Business Hours',
     icon: Clock,
     details: ['Monday - Friday: 8:00 AM - 6:00 PM PST', 'Saturday: 9:00 AM - 2:00 PM PST']
+  },
+  {
+    title: 'Response Time',
+    icon: Globe,
+    details: ['24-hour quote response', 'Serving customers nationwide']
   }
 ]
 
@@ -113,24 +113,24 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Map Section */}
+      {/* Service Coverage Section */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Our Location
+              Service Coverage
             </h2>
             <p className="text-lg text-gray-600">
-              Strategically located in Chihuahua for easy access to US markets
+              Strategically positioned to serve customers efficiently
             </p>
           </div>
           
-          <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center text-gray-600">
-              <MapPin className="h-16 w-16 mx-auto mb-4 text-blue-600" />
-              <h3 className="text-xl font-semibold mb-2">Chihuahua 31114, Mexico</h3>
-              <p>Strategic location for efficient cross-border operations</p>
-              <p>Easy logistics and communication with US customers</p>
+          <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-12 flex items-center justify-center">
+            <div className="text-center text-gray-700">
+              <Globe className="h-16 w-16 mx-auto mb-4 text-blue-600" />
+              <h3 className="text-2xl font-semibold mb-4 text-gray-900">Nationwide Service</h3>
+              <p className="text-lg mb-2">Strategic operations for efficient logistics</p>
+              <p className="text-lg">Fast shipping and seamless communication</p>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
-                Premium manufacturing services connecting US innovation with Mexican excellence. 
+                Premium manufacturing services delivering innovation and excellence. 
                 Your trusted partner for quality manufacturing solutions.
               </p>
               
@@ -206,7 +206,7 @@ export default function ContactPage() {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for US-Mexico manufacturing partnership.</p>
+            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for precision manufacturing excellence.</p>
           </div>
         </div>
       </footer>
