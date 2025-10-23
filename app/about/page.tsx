@@ -7,8 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const advantages = [
   {
-    title: 'Strategic Location',
-    description: 'Our Mexican facilities are strategically located near the US border for faster shipping and easier communication.',
+    title: 'Strategic Operations',
+    description: 'Our facilities are strategically positioned for efficient logistics, faster shipping and seamless communication.',
     icon: Globe
   },
   {
@@ -23,16 +23,16 @@ const advantages = [
   },
   {
     title: 'Fast Delivery',
-    description: 'Proximity to the US enables faster turnaround times compared to Asian manufacturing.',
+    description: 'Optimized logistics enable faster turnaround times for rapid project completion.',
     icon: Clock
   }
 ]
 
 const stats = [
-  { value: '40%', label: 'Cost Savings vs US Manufacturing' },
-  { value: '72hrs', label: 'Average Quote Response Time' },
+  { value: '24hrs', label: 'Average Quote Response Time' },
   { value: '99.5%', label: 'Quality Acceptance Rate' },
-  { value: '500+', label: 'Projects Completed' }
+  { value: '500+', label: 'Projects Completed' },
+  { value: '100%', label: 'Customer Satisfaction Focus' }
 ]
 
 export default function AboutPage() {
@@ -70,11 +70,11 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Bridging American Innovation <br />
-              <span className="text-blue-200">with Mexican Excellence</span>
+              Delivering Innovation <br />
+              <span className="text-blue-200">and Manufacturing Excellence</span>
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              We combine the best of both worlds: American engineering standards and Mexican manufacturing efficiency
+              We combine the best of precision engineering standards and manufacturing efficiency
             </p>
           </div>
         </div>
@@ -108,27 +108,27 @@ export default function AboutPage() {
           
           <div className="prose prose-lg mx-auto text-gray-700">
             <p>
-              Axion Manufacturing was born from a simple yet powerful idea: American businesses deserve access to 
+              Axion Manufacturing was born from a simple yet powerful idea: businesses deserve access to 
               high-quality manufacturing at competitive prices without compromising on quality or turnaround times.
             </p>
             
             <p>
               Our founders, with over 30 years of combined experience in the manufacturing industry, recognized 
-              the challenges faced by US companies in balancing cost, quality, and speed. Traditional overseas 
+              the challenges faced by companies in balancing cost, quality, and speed. Traditional overseas 
               manufacturing often meant long lead times, communication barriers, and quality concerns. Domestic 
               manufacturing, while high-quality, often came with prohibitive costs.
             </p>
             
             <p>
-              Mexico presented the perfect solution. With its strategic location, skilled workforce, and modern 
-              manufacturing infrastructure, we could offer our clients the best of both worlds: competitive 
-              pricing with proximity and quality assurance.
+              We present the perfect solution. With strategic operations, skilled workforce, and modern 
+              manufacturing infrastructure, we offer our clients the best of both worlds: competitive 
+              pricing with efficiency and quality assurance.
             </p>
             
             <p>
               Today, we operate state-of-the-art facilities equipped with the latest CNC machinery, laser cutting 
               systems, 3D printing technology, and sheet metal fabrication equipment. Our team of skilled engineers 
-              and technicians work closely with US clients to deliver precision parts and components that meet 
+              and technicians work closely with clients to deliver precision parts and components that meet 
               the highest standards.
             </p>
           </div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
               The Axion Advantage
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Why US companies choose Mexico for their manufacturing needs
+              Why companies choose Axion for their manufacturing needs
             </p>
           </div>
           
@@ -195,7 +195,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
-                Premium manufacturing services connecting US innovation with Mexican excellence. 
+                Premium manufacturing services delivering innovation and excellence. 
                 Your trusted partner for quality manufacturing solutions.
               </p>
               
@@ -254,7 +254,7 @@ export default function AboutPage() {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for US-Mexico manufacturing partnership.</p>
+            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for precision manufacturing excellence.</p>
           </div>
         </div>
       </footer>

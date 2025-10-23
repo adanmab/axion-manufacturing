@@ -48,15 +48,15 @@ const services = [
 
 const benefits = [
   {
-    title: 'Cost Savings up to 40%',
-    description: 'Leverage Mexico manufacturing to reduce costs while maintaining quality',
+    title: 'Competitive Pricing',
+    description: 'Fair pricing with no hidden fees while maintaining exceptional quality',
     icon: DollarSign,
     color: 'from-emerald-600 to-green-700',
-    stat: '40%'
+    stat: 'Best Value'
   },
   {
     title: 'Faster Turnaround',
-    description: 'Close proximity to the US enables faster shipping and communication',
+    description: 'Efficient logistics enable faster shipping and communication',
     icon: Clock,
     color: 'from-blue-600 to-indigo-700',
     stat: '2-5 days'
@@ -69,8 +69,8 @@ const benefits = [
     stat: '99.9%'
   },
   {
-    title: 'US-Mexico Advantage',
-    description: 'Bridge American innovation with Mexican manufacturing excellence',
+    title: 'Manufacturing Excellence',
+    description: 'Advanced technology with precision manufacturing capabilities',
     icon: Globe,
     color: 'from-teal-600 to-cyan-700',
     stat: '24/7'
@@ -94,8 +94,8 @@ const stats = [
     icon: Star
   },
   {
-    number: '40%',
-    label: 'Cost Reduction',
+    number: '24hrs',
+    label: 'Quote Response',
     icon: TrendingUp
   }
 ]
@@ -190,17 +190,17 @@ export default function HomePage() {
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span style={{ textShadow: '0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)' }}>
-                  US Quality Manufacturing
+                  Premium Quality
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-emerald-300 via-blue-300 to-teal-300 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                  in Mexico
+                  Manufacturing Services
                 </span>
               </h1>
               
               <p className="text-lg md:text-xl mb-8 text-white max-w-2xl mx-auto lg:mx-0 font-semibold" style={{ textShadow: '0 3px 8px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.6)' }}>
                 Get premium manufacturing services at competitive prices with faster turnaround times. 
-                Experience the perfect blend of American quality standards and Mexican cost efficiency.
+                Experience the perfect blend of quality standards and cost efficiency.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
@@ -247,7 +247,7 @@ export default function HomePage() {
               Why Choose <span className="bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">Axion Manufacturing</span>?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
-              We combine American engineering standards with Mexican manufacturing efficiency to deliver exceptional results
+              We combine precision engineering standards with manufacturing efficiency to deliver exceptional results
             </p>
           </div>
           
@@ -423,7 +423,7 @@ export default function HomePage() {
                 </div>
               </div>
               <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
-                Premium manufacturing services connecting US innovation with Mexican excellence. 
+                Premium manufacturing services delivering innovation and excellence. 
                 Your trusted partner for quality manufacturing solutions.
               </p>
               
@@ -482,7 +482,7 @@ export default function HomePage() {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for US-Mexico manufacturing partnership.</p>
+            <p className="text-gray-400">&copy; 2024 Axion Manufacturing. All rights reserved. Made with ❤️ for precision manufacturing excellence.</p>
           </div>
         </div>
       </footer>
