@@ -1,39 +1,44 @@
-import { ContactForm } from '@/components/contact-form'
-import { MapPin, Mail, Clock, Phone, Shield, Settings, Zap, Layers3, Wrench } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { CheckCircle, Clock, Shield, Settings, Zap, Layers3, Wrench, MapPin, Phone, Globe, Users, Award } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-const contactInfo = [
+const capabilities = [
   {
-    title: 'Location',
-    icon: MapPin,
-    details: ['Houston, TX 77002', 'Serving the US industrial market'],
-    highlight: true
+    title: 'Precision Engineering',
+    description: 'Our team holds tolerances down to ±0.0001" across CNC machining, laser cutting, and sheet metal work. Every part is dimensionally verified before it ships.',
+    icon: Award
   },
   {
-    title: 'Phone',
-    icon: Phone,
-    details: ['(832) 555-0100', 'Call or text during business hours'],
-    link: 'tel:+18325550100'
+    title: 'Responsive Team',
+    description: 'We operate on Central time and respond to quote requests and engineering questions the same business day. No runaround, no unanswered emails.',
+    icon: Clock
   },
   {
-    title: 'Email',
-    icon: Mail,
-    details: ['quote@axionmfg.net', 'Best for sending files and specs'],
-    link: 'mailto:quote@axionmfg.net'
+    title: 'Quality Documentation',
+    description: 'We provide material certifications, dimensional inspection reports, and first article inspection (FAI) on request — the documentation procurement teams need.',
+    icon: Shield
   },
   {
-    title: 'Business Hours',
-    icon: Clock,
-    details: ['Mon–Fri: 8:00 AM – 6:00 PM CST', 'Sat: 9:00 AM – 1:00 PM CST'],
+    title: 'Broad Capabilities',
+    description: 'CNC machining, laser cutting, sheet metal fabrication, and 3D printing under one roof. Prototype runs and production orders both welcome.',
+    icon: Settings
   }
 ]
 
-export default function ContactPage() {
+const qualityProcesses = [
+  'Dimensional inspection on every order',
+  'Material certifications available',
+  'First Article Inspection (FAI) on request',
+  'Inspection reports provided with shipment',
+  'Non-conformance review process',
+  'Secure file handling for proprietary designs',
+]
+
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="bg-white border-b">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,97 +50,133 @@ export default function ContactPage() {
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/services" className="text-gray-700 hover:text-blue-600 transition-colors">Services</Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">About</Link>
-              <span className="text-blue-600 font-semibold">Contact</span>
-              <Link href="/quote" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors text-sm font-medium">
-                Get Quote
+              <span className="text-blue-600 font-semibold">About</span>
+              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</Link>
+              <Link href="/quote">
+                <Button className="bg-blue-600 hover:bg-blue-700">Get Quote</Button>
               </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Header */}
+      {/* Hero */}
       <section className="bg-gradient-to-r from-blue-700 to-slate-800 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 mb-4">
-            <MapPin className="h-5 w-5 text-teal-300" />
-            <span className="text-teal-300 font-medium">Houston, TX</span>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-4">
+              <MapPin className="h-5 w-5 text-teal-300" />
+              <span className="text-teal-300 font-medium">Houston, TX</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Precision Manufacturing<br />
+              <span className="text-blue-200">for Demanding Applications</span>
+            </h1>
+            <p className="text-xl text-blue-100 max-w-2xl">
+              Axion Manufacturing delivers precision-machined parts, fabricated assemblies, and rapid prototypes to engineers and procurement teams across the US energy and industrial sectors.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl text-blue-100 max-w-2xl">
-            Have a project in mind? Send us your files, specs, or questions — we respond within one business day.
-          </p>
         </div>
       </section>
 
-      <div className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Contact Information */}
-            <div className="lg:col-span-1 space-y-4">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
-              {contactInfo.map((info, index) => (
-                <Card key={index} className={`hover:shadow-md transition-shadow ${info.highlight ? 'border-blue-200 bg-blue-50' : ''}`}>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="flex items-center text-base text-gray-900">
-                      <info.icon className={`h-5 w-5 mr-3 ${info.highlight ? 'text-blue-600' : 'text-blue-500'}`} />
-                      {info.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    {info.details.map((detail, i) => (
-                      <p key={i} className={`text-sm ${i === 0 ? 'text-gray-800 font-medium' : 'text-gray-500'}`}>
-                        {info.link && i === 0 ? (
-                          <a href={info.link} className="text-blue-600 hover:underline font-medium">{detail}</a>
-                        ) : detail}
-                      </p>
-                    ))}
-                  </CardContent>
-                </Card>
-              ))}
+      {/* Our Story */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Story</h2>
+          <div className="prose prose-lg text-gray-700 space-y-5">
+            <p>
+              Axion Manufacturing was founded by engineers who spent years on the other side of the table — sourcing parts, chasing quotes, and dealing with delivery delays. We built this company to solve those problems directly.
+            </p>
+            <p>
+              We specialize in precision CNC machining, laser cutting, sheet metal fabrication, and 3D printing, with a focus on serving Houston's oil & gas, energy, and industrial equipment sectors. Our team brings over 30 years of combined manufacturing experience to every project.
+            </p>
+            <p>
+              We keep things simple: you send us your files, we send you an accurate quote within 24 hours, and we deliver parts that meet your specs on time. No surprises, no excuses.
+            </p>
+          </div>
+        </div>
+      </section>
 
-              <Card className="bg-green-50 border-green-200 mt-6">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-green-800 text-base flex items-center gap-2">
-                    <Shield className="h-5 w-5" />
-                    24-Hour Response Guarantee
-                  </CardTitle>
+      {/* Capabilities */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">The Axion Difference</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              What sets us apart isn't a tagline — it's how we operate day to day.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {capabilities.map((item, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <item.icon className="h-10 w-10 text-blue-600 mb-3" />
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-green-700 text-sm leading-relaxed">
-                    We respond to all inquiries by the next business day. For urgent RFQs, call or text us directly at (832) 555-0100.
-                  </p>
+                  <CardDescription className="text-base leading-relaxed">{item.description}</CardDescription>
                 </CardContent>
               </Card>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <ContactForm />
+      {/* Quality */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Quality You Can Verify</h2>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                We don't just say our parts meet spec — we document it. Every order includes dimensional inspection, and we can provide full material traceability and first article reports for regulated industries.
+              </p>
+              <ul className="space-y-3">
+                {qualityProcesses.map((process, index) => (
+                  <li key={index} className="flex items-center gap-3 text-gray-700">
+                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    <span>{process}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-10 text-center">
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { value: '< 24 hrs', label: 'Quote Response' },
+                  { value: '2–5 days', label: 'Avg. Lead Time' },
+                  { value: '100%', label: 'Parts Inspected' },
+                  { value: 'CST', label: 'Business Hours' },
+                ].map((stat, i) => (
+                  <div key={i} className="bg-white rounded-xl p-5 shadow-sm">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">{stat.value}</div>
+                    <div className="text-sm text-gray-500 font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Service Area */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Service Area</h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Based in Houston, TX — we ship precision parts to customers across the United States. Local pickup available by appointment.
+      {/* CTA */}
+      <section className="py-20 bg-blue-700 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Work Together?</h2>
+          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+            Send us your files or reach out to discuss your project. We respond within one business day.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            {[
-              { label: 'Houston Metro', desc: 'Same-day pickup available' },
-              { label: 'Texas & Gulf Coast', desc: 'Next-day delivery options' },
-              { label: 'Continental US', desc: 'Standard FedEx / UPS shipping' },
-            ].map((area, i) => (
-              <div key={i} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
-                <div className="font-bold text-gray-900 mb-1">{area.label}</div>
-                <div className="text-sm text-gray-500">{area.desc}</div>
-              </div>
-            ))}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/quote">
+              <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-50 px-8 py-3 font-semibold">
+                Request a Quote
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 px-8 py-3 font-semibold">
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -145,12 +186,14 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div className="col-span-1 md:col-span-2">
-              <Image src="/logo.png" alt="Axion Manufacturing Logo" width={192} height={40} className="object-contain [filter:brightness(0)_invert(1)] mb-6" />
+              <div className="mb-6">
+                <Image src="/logo.png" alt="Axion Manufacturing Logo" width={192} height={40} className="object-contain [filter:brightness(0)_invert(1)]" />
+              </div>
               <p className="text-gray-300 mb-6 text-base leading-relaxed max-w-md">
                 Precision manufacturing services for Houston's energy, industrial, and aerospace sectors.
               </p>
               <div className="space-y-3 text-gray-400 text-sm">
-                <div className="flex items-center gap-3"><MapPin className="h-4 w-4 text-blue-400" /><span>Houston, TX 77002</span></div>
+                <div className="flex items-center gap-3"><MapPin className="h-4 w-4 text-blue-400" /><span>Houston, TX</span></div>
                 <div className="flex items-center gap-3"><Phone className="h-4 w-4 text-teal-400" /><a href="tel:+18325550100" className="hover:text-white">(832) 555-0100</a></div>
                 <div className="flex items-center gap-3"><Clock className="h-4 w-4 text-green-400" /><span>Mon–Fri 8:00 AM – 6:00 PM CST</span></div>
               </div>
@@ -167,12 +210,14 @@ export default function ContactPage() {
             <div>
               <h3 className="text-base font-bold mb-5">Company</h3>
               <ul className="space-y-3 text-sm mb-8">
-                <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
-                <li><Link href="/quote" className="text-gray-400 hover:text-white">Get Quote</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/quote" className="text-gray-400 hover:text-white transition-colors">Get Quote</Link></li>
               </ul>
               <Link href="/quote">
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-sm">Start Your Project</Button>
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-sm">
+                  Start Your Project
+                </Button>
               </Link>
             </div>
           </div>
