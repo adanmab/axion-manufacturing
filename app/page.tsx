@@ -1,10 +1,11 @@
+
 'use client'
 
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowRight, CheckCircle, Clock, Shield, Settings, Zap, Layers3, Wrench, MapPin, Phone, ChevronRight } from 'lucide-react'
+import { ArrowRight, CheckCircle, Factory, Globe, Clock, DollarSign, Zap, Settings, Layers3, Wrench, Shield, Star, Users, TrendingUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { HeroFileUpload } from '@/components/hero-file-upload'
@@ -17,73 +18,54 @@ interface FileWithPreview {
 const services = [
   {
     title: 'CNC Machining',
-    description: 'Multi-axis CNC machining for complex parts and prototypes with tight tolerances. Aluminum, steel, stainless, titanium, and more.',
+    description: 'Precision CNC machining services for complex parts and prototypes with tight tolerances.',
     href: '/services/cnc-machining',
     icon: Settings,
-    color: 'from-blue-600 to-cyan-600',
-    spec: 'Tolerances to ±0.0001"'
+    color: 'from-blue-600 to-cyan-600'
   },
-  {
-    title: 'Laser Cutting',
-    description: 'High-precision CO2 and fiber laser cutting for sheet metal, plastics, and specialty materials up to 1" thick.',
-    href: '/services/laser-cutting',
-    icon: Zap,
-    color: 'from-slate-600 to-gray-600',
-    spec: 'Thickness up to 1"'
-  },
+
   {
     title: '3D Printing',
-    description: 'Rapid prototyping and production using FDM, SLA, and SLS technologies. Ideal for design validation and low-volume runs.',
+    description: 'Rapid prototyping and production using advanced 3D printing technologies.',
     href: '/services/3d-printing',
     icon: Layers3,
-    color: 'from-emerald-600 to-teal-600',
-    spec: 'FDM · SLA · SLS'
+    color: 'from-emerald-600 to-teal-600'
+  },
+
+]
+
+const benefits = [
+  {
+    title: 'Competitive Pricing',
+    description: 'Fair pricing with no hidden fees while maintaining exceptional quality',
+    icon: DollarSign,
+    color: 'from-emerald-600 to-green-700',
+    stat: 'Best Value'
   },
   {
-    title: 'Sheet Metal Fabrication',
-    description: 'Complete sheet metal services including press brake forming, TIG/MIG welding, assembly, and surface finishing.',
-    href: '/services/sheet-metal',
-    icon: Wrench,
-    color: 'from-blue-700 to-slate-700',
-    spec: 'Forming · Welding · Assembly'
-  }
-]
-
-const industries = [
-  { name: 'Oil & Gas', icon: '⚙️' },
-  { name: 'Energy', icon: '⚡' },
-  { name: 'Aerospace', icon: '✈️' },
-  { name: 'Industrial Equipment', icon: '🏭' },
-  { name: 'Medical Devices', icon: '🔬' },
-  { name: 'Defense', icon: '🛡️' },
-]
-
-const whyUs = [
-  {
-    title: 'Fast Turnaround',
-    description: 'Most orders ship in 2–5 business days. Rush options available for urgent needs.',
+    title: 'Faster Turnaround',
+    description: 'Efficient logistics enable faster shipping and communication',
     icon: Clock,
-    stat: '2–5 days'
+    color: 'from-blue-600 to-indigo-700',
+    stat: '2-5 days'
   },
   {
-    title: 'Quality Inspection',
-    description: 'Every part goes through dimensional inspection. Material certifications available on request.',
+    title: 'Quality Assurance',
+    description: 'Advanced quality control processes and rigorous testing procedures',
     icon: Shield,
-    stat: 'Inspected'
+    color: 'from-slate-600 to-gray-700',
+    stat: '99.9%'
   },
   {
-    title: '24-Hour Quotes',
-    description: 'Upload your files and receive a detailed quote within one business day.',
-    icon: CheckCircle,
-    stat: '< 24 hrs'
-  },
-  {
-    title: 'Houston-Based',
-    description: 'Serving the Houston metro and US industrial markets. CST business hours, responsive team.',
-    icon: MapPin,
-    stat: 'Houston, TX'
+    title: 'Manufacturing Excellence',
+    description: 'Advanced technology with precision manufacturing capabilities',
+    icon: Globe,
+    color: 'from-teal-600 to-cyan-700',
+    stat: '24/7'
   }
 ]
+
+
 
 export default function HomePage() {
   const router = useRouter()
@@ -92,6 +74,7 @@ export default function HomePage() {
   const handleFilesChange = async (files: FileWithPreview[]) => {
     setUploadedFiles(files)
     if (files.length > 0) {
+      // Convert files to base64 and store in localStorage for the quote page
       const filesData = await Promise.all(
         files.map(async (f) => {
           const buffer = await f.file.arrayBuffer()
@@ -107,10 +90,13 @@ export default function HomePage() {
           }
         })
       )
+      
       localStorage.setItem('uploadedFiles', JSON.stringify(filesData))
+      
+      // Auto-redirect to quote page when files are uploaded
       setTimeout(() => {
         router.push('/quote')
-      }, 1000)
+      }, 1000) // Small delay to show the upload success
     }
   }
 
@@ -147,61 +133,57 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative text-white py-24 md:py-32 overflow-hidden min-h-screen flex items-center">
-        <div
+        {/* Background Image */}
+        <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: 'url(https://cdn.abacus.ai/images/82d5a33e-4a8d-47e3-8d67-d5cb8a786221.png)' }}
         ></div>
+        
+        {/* Gradient Overlays - More transparent to show background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-slate-800/60 to-teal-900/70"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/40"></div>
-
+        
+        {/* Animated background elements */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-float opacity-40"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-float-delay opacity-30"></div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column - Text Content */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-md rounded-full px-6 py-2 mb-6 border border-white/20">
-                <MapPin className="h-4 w-4 mr-2 text-teal-300" />
-                <span className="text-sm font-medium">Houston, TX — Serving the US Industrial Sector</span>
+              <div className="inline-flex items-center bg-white/10 backdrop-blur-md rounded-full px-6 py-2 mb-8 border border-white/20">
+                <span className="text-sm font-medium">🚀 Now Serving US Customers</span>
               </div>
-
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span style={{ textShadow: '0 4px 12px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)' }}>
-                  Precision Parts,
+                  Premium Quality
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-emerald-300 via-blue-300 to-teal-300 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                  Fast Turnaround
+                  Manufacturing Services
                 </span>
               </h1>
-
-              <p className="text-lg md:text-xl mb-8 text-white max-w-2xl mx-auto lg:mx-0 font-semibold" style={{ textShadow: '0 3px 8px rgba(0,0,0,0.8)' }}>
-                CNC machining, laser cutting, sheet metal fabrication, and 3D printing — serving Houston's energy and industrial sectors with 24-hour quotes.
+              
+              <p className="text-lg md:text-xl mb-8 text-white max-w-2xl mx-auto lg:mx-0 font-semibold" style={{ textShadow: '0 3px 8px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.6)' }}>
+                Get premium manufacturing services at competitive prices with faster turnaround times. 
+                Experience the perfect blend of quality standards and cost efficiency.
               </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-10">
-                <Link href="/quote">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
-                    Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12">
                 <Link href="/services">
-                  <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white border border-white/30 px-8 py-3 text-lg font-semibold backdrop-blur-sm transition-all duration-300 hover:scale-105">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
                     View Services
                   </Button>
                 </Link>
+                <Link href="/contact">
+                  <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white border-0 px-8 py-3 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
+                    Contact Us
+                  </Button>
+                </Link>
               </div>
 
-              {/* Trust indicators */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                {[
-                  { label: '24-Hr Quotes', icon: Clock },
-                  { label: 'Parts Inspected', icon: Shield },
-                  { label: 'Houston, TX', icon: MapPin },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
-                    <item.icon className="h-4 w-4 text-teal-300" />
-                    <span className="text-sm font-medium">{item.label}</span>
-                  </div>
-                ))}
-              </div>
+
             </div>
 
             {/* Right Column - File Upload */}
@@ -212,48 +194,66 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Industries Served */}
-      <section className="py-16 bg-gray-900 text-white">
+      {/* Benefits Section */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-2">Industries We Serve</p>
-            <h2 className="text-2xl font-bold text-white">Supporting Houston's Core Industries</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map((industry, index) => (
-              <div key={index} className="flex flex-col items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-4 transition-all duration-300">
-                <span className="text-2xl">{industry.icon}</span>
-                <span className="text-sm font-medium text-gray-300 text-center">{industry.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">Why Axion</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Built for <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Industrial Buyers</span>
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-slate-100 text-slate-700 rounded-full px-4 py-2 mb-6">
+              <span className="text-sm font-semibold">✨ Why Choose Us</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Why Choose <span className="bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">Axion Manufacturing</span>?
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We understand what engineers and procurement teams need — accurate quotes, on-time delivery, and parts that meet spec.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
+              We combine precision engineering standards with manufacturing efficiency to deliver exceptional results
             </p>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyUs.map((item, index) => (
-              <div key={index} className="benefit-card p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 mx-auto mb-4 flex items-center justify-center">
-                  <item.icon className="h-7 w-7 text-blue-600" />
+            {benefits.map((benefit, index) => (
+              <div key={index} className="group relative">
+                <div className="benefit-card p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full">
+                  {/* Icon with gradient background */}
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${benefit.color} mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <benefit.icon className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  {/* Stats badge */}
+                  <div className="inline-flex items-center bg-gray-100 text-gray-700 rounded-full px-3 py-1 text-sm font-bold mb-4">
+                    {benefit.stat}
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {benefit.description}
+                  </p>
+                  
+                  {/* Hover effect overlay */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
-                <div className="text-sm font-bold text-blue-600 mb-3 uppercase tracking-wide">{item.stat}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
+          </div>
+          
+          {/* Additional trust indicators */}
+          <div className="mt-20 text-center">
+            <p className="text-gray-500 mb-8 font-medium">Trusted by companies across North America</p>
+            <div className="flex justify-center items-center space-x-8 opacity-60">
+              <div className="flex items-center space-x-2">
+                <Shield className="h-6 w-6 text-green-600" />
+                <span className="font-semibold text-gray-700">Quality Assured</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="h-6 w-6 text-blue-600" />
+                <span className="font-semibold text-gray-700">Quality Guaranteed</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Clock className="h-6 w-6 text-purple-600" />
+                <span className="font-semibold text-gray-700">24h Response</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -261,59 +261,209 @@ export default function HomePage() {
       {/* Services Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-3">Capabilities</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Manufacturing <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Services</span>
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-gradient-to-r from-slate-100 to-blue-100 text-slate-700 rounded-full px-4 py-2 mb-6">
+              <span className="text-sm font-semibold">🔧 Our Expertise</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Our <span className="bg-gradient-to-r from-blue-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">Manufacturing Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              From prototype to production — precision manufacturing across four core processes.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-balance">
+              Complete manufacturing solutions powered by cutting-edge technology and expert craftsmanship
             </p>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div key={index} className="group relative">
                 <Link href={service.href}>
                   <div className="service-card p-8 rounded-2xl shadow-lg border border-gray-100 h-full relative overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${service.color} mb-5 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <service.icon className="h-7 w-7 text-white" />
+                    {/* Background gradient on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                    
+                    {/* Icon with gradient background */}
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color} mb-6 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10`}>
+                      <service.icon className="h-8 w-8 text-white" />
                     </div>
-                    <div className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-2">{service.spec}</div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors relative z-10">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 mb-5 leading-relaxed text-sm">
+                    
+                    <p className="text-gray-600 mb-6 leading-relaxed relative z-10">
                       {service.description}
                     </p>
-                    <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300">
-                      Learn More <ChevronRight className="ml-1 h-4 w-4" />
+                    
+                    <div className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform duration-300 relative z-10">
+                      Learn More <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
+                    
+                    {/* Subtle border glow on hover */}
+                    <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-blue-200 transition-colors duration-300"></div>
                   </div>
                 </Link>
               </div>
             ))}
           </div>
+          
+          {/* Process flow */}
+          <div className="mt-20 text-center">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8">Simple 3-Step Process</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white flex items-center justify-center font-bold text-lg mb-4">1</div>
+                <h4 className="font-semibold text-gray-900 mb-2">Upload Files</h4>
+                <p className="text-gray-600 text-sm">Upload your CAD files and specifications</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-slate-600 to-gray-600 text-white flex items-center justify-center font-bold text-lg mb-4">2</div>
+                <h4 className="font-semibold text-gray-900 mb-2">Get Quote</h4>
+                <p className="text-gray-600 text-sm">Receive detailed quote within 24 hours</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white flex items-center justify-center font-bold text-lg mb-4">3</div>
+                <h4 className="font-semibold text-gray-900 mb-2">Get Parts</h4>
+                <p className="text-gray-600 text-sm">Receive high-quality parts on time</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { step: '01', title: 'Upload Your Files', desc: 'Send us your CAD files, drawings, or specs. We accept STEP, DWG, STL, PDF, and more.' },
-              { step: '02', title: 'Receive Your Quote', desc: 'We review your files and send a detailed quote — material, lead time, and pricing — within 24 hours.' },
-              { step: '03', title: 'Get Your Parts', desc: 'We manufacture your parts to spec and ship to your door. Most orders ready in 2–5 business days.' },
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="text-5xl font-bold text-blue-100 mb-3">{item.step}</div>
-                <h4 className="font-bold text-gray-900 mb-2 text-lg">{item.title}</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+      {/* Why Buy from Us - US Company Advantages */}
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center bg-blue-100 text-blue-700 rounded-full px-4 py-2 mb-6">
+              <span className="text-sm font-semibold">🇺🇸 US Company Advantage</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Why Buy from a <span className="bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">US Company</span>?
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              We're not just a manufacturer — we're a US entity that eliminates all the headaches of dealing with international suppliers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {/* Zero Risk - Legal Protection */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center mb-4">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">Zero Risk - US Legal Protection</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">
+                  You buy from, contract with, and legally deal with a US LLC. Full legal protection and recourse if anything goes wrong.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Easy Payment */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-600 flex items-center justify-center mb-4">
+                  <DollarSign className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">Easy US Payments</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-3">
+                  No international wire transfers needed. We accept:
+                </p>
+                <ul className="text-gray-300 space-y-1.5">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                    ACH transfers
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                    US checks
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-400 mr-2" />
+                    Net 30 terms (on approval)
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* DDP Shipping */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center mb-4">
+                  <Globe className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">DDP Shipping - Zero Customs Hassle</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">
+                  We handle ALL logistics and importation. Parts arrive at your dock as domestic shipments. No customs headaches for you.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Fast Vendor Approval */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center mb-4">
+                  <Clock className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">1-Day Vendor Approval</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">
+                  Your procurement department can approve us in 1 day instead of 1 month. We're a domestic supplier in their system.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Quality Assurance */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-teal-500 to-green-600 flex items-center justify-center mb-4">
+                  <CheckCircle className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">Quality Assurance & Compliance</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">
+                  Full quality inspection, material certifications, and compliance documentation included with every order.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Manufacturing Expertise */}
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/15 transition-all">
+              <CardHeader>
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center mb-4">
+                  <Factory className="h-8 w-8 text-white" />
+                </div>
+                <CardTitle className="text-white text-xl">American Manufacturing Expertise</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300">
+                  We bring you quality with optimized supply chain efficiency and competitive pricing on every project.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center bg-gradient-to-r from-blue-600 to-teal-600 rounded-2xl p-12">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Ready to work with a real US manufacturing partner?
+            </h3>
+            <p className="text-xl text-blue-100 mb-8">
+              Fast vendor approval, easy payments, and hassle-free purchasing today
+            </p>
+            <Link href="/quote">
+              <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100 px-10 py-4 text-lg font-semibold shadow-xl">
+                Request Quote Now <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -321,28 +471,39 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-br from-blue-700 via-slate-700 to-teal-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Ready to Start Your Project?
+        
+        {/* Animated background elements */}
+        <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-float opacity-40"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-float-delay opacity-30"></div>
+        
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-8 border border-white/20">
+            <span className="text-sm font-semibold">🚀 Ready to Start Manufacturing?</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+            Transform Your Ideas Into <br />
+            <span className="bg-gradient-to-r from-emerald-300 via-blue-300 to-teal-300 bg-clip-text text-transparent">
+              High-Quality Parts
+            </span>
           </h2>
-          <p className="text-xl mb-10 text-white/90 max-w-2xl mx-auto">
-            Upload your CAD files and get a detailed quote within 24 hours. Our team is ready to help.
+          
+          <p className="text-xl md:text-2xl mb-12 text-white/90 max-w-3xl mx-auto font-medium">
+            Upload your CAD files and get a custom quote within 24 hours. 
+            Experience the Axion Manufacturing difference today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/quote">
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-10 py-4 text-lg font-semibold shadow-2xl transition-all duration-300 hover:scale-105">
-                Request a Quote <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                Request Quote <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-2 border-white/40 text-white hover:bg-white/10 px-10 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105">
-                Talk to Our Team
+              <Button size="lg" variant="outline" className="border-2 border-white bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm px-10 py-4 text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
+                Talk to Expert
               </Button>
             </Link>
-          </div>
-          <div className="flex items-center justify-center gap-2 text-white/70">
-            <Phone className="h-4 w-4" />
-            <span className="text-sm">Call or text: <a href="tel:+18325550100" className="text-white font-semibold hover:underline">(832) 555-0100</a></span>
           </div>
         </div>
       </section>
@@ -357,53 +518,65 @@ export default function HomePage() {
                   <Image src="/logo.png" alt="Axion Manufacturing Logo" width={192} height={40} className="object-contain [filter:brightness(0)_invert(1)]" />
                 </div>
               </div>
-              <p className="text-gray-300 mb-6 text-base leading-relaxed max-w-md">
-                Precision manufacturing services for Houston's energy, industrial, and aerospace sectors. Fast quotes, reliable delivery, quality you can verify.
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
+                Premium manufacturing services delivering innovation and excellence. 
+                Your trusted partner for quality manufacturing solutions.
               </p>
-              <div className="space-y-3 text-gray-400 text-sm">
+              
+              {/* Contact info */}
+              <div className="space-y-3 text-gray-400">
                 <div className="flex items-center space-x-3">
-                  <MapPin className="h-4 w-4 text-blue-400 flex-shrink-0" />
-                  <span>Houston, TX — Serving the US Industrial Market</span>
+                  <Globe className="h-5 w-5 text-blue-400" />
+                  <span>Serving customers across North America</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Phone className="h-4 w-4 text-teal-400 flex-shrink-0" />
-                  <a href="tel:+18325550100" className="hover:text-white transition-colors">(832) 555-0100</a>
+                  <Clock className="h-5 w-5 text-teal-400" />
+                  <span>24-hour quote response time</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Clock className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Mon–Fri 8:00 AM – 6:00 PM CST</span>
+                  <Shield className="h-5 w-5 text-green-400" />
+                  <span>Quality controlled facilities</span>
                 </div>
               </div>
             </div>
-
+            
             <div>
-              <h3 className="text-base font-bold mb-5 text-white">Services</h3>
+              <h3 className="text-xl font-bold mb-6 text-white">Services</h3>
               <ul className="space-y-3">
-                <li><Link href="/services/cnc-machining" className="text-gray-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2"><Settings className="h-4 w-4" />CNC Machining</Link></li>
-                <li><Link href="/services/laser-cutting" className="text-gray-400 hover:text-gray-300 transition-colors text-sm flex items-center gap-2"><Zap className="h-4 w-4" />Laser Cutting</Link></li>
-                <li><Link href="/services/3d-printing" className="text-gray-400 hover:text-teal-400 transition-colors text-sm flex items-center gap-2"><Layers3 className="h-4 w-4" />3D Printing</Link></li>
-                <li><Link href="/services/sheet-metal" className="text-gray-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2"><Wrench className="h-4 w-4" />Sheet Metal</Link></li>
+                <li><Link href="/services/cnc-machining" className="text-gray-400 hover:text-blue-400 transition-colors flex items-center space-x-2">
+                  <Settings className="h-4 w-4" /><span>CNC Machining</span>
+                </Link></li>
+                <li><Link href="/services/3d-printing" className="text-gray-400 hover:text-teal-400 transition-colors flex items-center space-x-2">
+                  <Layers3 className="h-4 w-4" /><span>3D Printing</span>
+                </Link></li>
               </ul>
             </div>
-
+            
             <div>
-              <h3 className="text-base font-bold mb-5 text-white">Company</h3>
-              <ul className="space-y-3 mb-8">
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors text-sm">About Us</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact</Link></li>
-                <li><Link href="/quote" className="text-gray-400 hover:text-white transition-colors text-sm">Get Quote</Link></li>
+              <h3 className="text-xl font-bold mb-6 text-white">Company</h3>
+              <ul className="space-y-3">
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
+                <li><Link href="/quote" className="text-gray-400 hover:text-white transition-colors font-semibold">Get Quote</Link></li>
               </ul>
-              <Link href="/quote">
-                <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 transition-all duration-300 text-sm">
-                  Start Your Project
-                </Button>
-              </Link>
+              
+              {/* CTA in footer */}
+              <div className="mt-8">
+                <Link href="/quote">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    Start Your Project
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
-
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">&copy; 2025 Axion Manufacturing. All rights reserved.</p>
-            <p className="text-gray-600 text-sm">Houston, TX · quote@axionmfg.net · (832) 555-0100</p>
+          
+          <div className="border-t border-gray-800 mt-12 pt-8">
+            <div className="text-center space-y-2">
+              <p className="text-white font-semibold text-lg">Axion Manufacturing LLC</p>
+              <p className="text-gray-400">US-Based Manufacturing Company</p>
+              <p className="text-gray-400 text-sm mt-4">&copy; 2024 Axion Manufacturing LLC. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </footer>

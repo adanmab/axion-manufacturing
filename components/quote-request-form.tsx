@@ -103,7 +103,7 @@ export function QuoteRequestForm({ uploadedFiles = [] }: QuoteRequestFormProps) 
         (window as any).gtag('event', 'conversion', {
           'send_to': 'AW-874962281/vQU6CNbIkakbEOm6m6ED',
           'value': 500.0,
-          'currency': 'MXN',
+          'currency': 'USD',
           'transaction_id': result.quoteId || Math.random().toString(36).substr(2, 9)
         });
         
@@ -244,9 +244,9 @@ export function QuoteRequestForm({ uploadedFiles = [] }: QuoteRequestFormProps) 
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="cnc-machining">CNC Machining</SelectItem>
-                <SelectItem value="laser-cutting">Laser Cutting</SelectItem>
+
                 <SelectItem value="3d-printing">3D Printing</SelectItem>
-                <SelectItem value="sheet-metal">Sheet Metal Fabrication</SelectItem>
+
                 <SelectItem value="multiple">Multiple Services</SelectItem>
               </SelectContent>
             </Select>
