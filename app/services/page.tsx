@@ -33,7 +33,7 @@ export default function ServicesPage() {
           <div className="flex justify-between items-center py-4">
             <Link href="/" className="flex items-center space-x-2">
               <div className="relative h-8 flex items-center">
-                <Image src="/logo.png" alt="Axion Manufacturing Logo" width={144} height={32} className="object-contain" />
+                <Image src="/logo-v2.png" alt="Axion Manufacturing Logo" width={144} height={32} className="object-contain" />
               </div>
             </Link>
             <div className="hidden md:flex items-center space-x-8">

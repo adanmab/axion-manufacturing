@@ -108,7 +108,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
               <div className="relative h-8 flex items-center">
-                <Image src="/logo.png" alt="Axion Manufacturing Logo" width={144} height={32} className="object-contain" />
+                <Image src="/logo-v2.png" alt="Axion Manufacturing Logo" width={144} height={32} className="object-contain" />
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
@@ -515,7 +515,7 @@ export default function HomePage() {
             <div className="col-span-1 md:col-span-2">
               <div className="mb-6">
                 <div className="relative h-10 w-48 flex items-center">
-                  <Image src="/logo.png" alt="Axion Manufacturing Logo" width={192} height={40} className="object-contain [filter:brightness(0)_invert(1)]" />
+                  <Image src="/logo-v2.png" alt="Axion Manufacturing Logo" width={192} height={40} className="object-contain [filter:brightness(0)_invert(1)]" />
                 </div>
               </div>
               <p className="text-gray-300 mb-6 text-lg leading-relaxed max-w-md">
